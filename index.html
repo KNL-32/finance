@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <div class="container">
+      <header>
+        <h1>Student Finance Tracker</h1>
+
+        <nav>
+          <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#Records">Records</a></li>
+            <li><a href="#form">New Transactions</a></li>
+            <li><a href="#settings">Setting</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main id="main-content">
+        <section id="dashboard">
+          <h2>Dashboard</h2>
+          <!-- span separates the data and the labels making in it accessible -->
+
+          <div class="stats">
+            <div class="stat-card">
+              Total Transactions: <span id="total-transactions">0</span>
+            </div>
+            <div class="stat-card">
+              Total Amount: $<span id="total-amount">0</span>
+            </div>
+            <div class="stat-card">
+              Top Category: <span id="top-category">-</span>
+            </div>
+            <div class="stat-card">
+              Last 7 Days: <span id="last-7-days">0</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="Records">
+          <h2>Records</h2>
+          <!---table to display financial records--->
+
+          <div class="sorting-controls">
+            <label for="sort-field">Sort By:</label>
+            <select id="sort-field">
+              <option value="">Select Field</option>
+              <option value="description">Description</option>
+              <option value="amount">Amount</option>
+              <option value="category">Category</option>
+              <option value="date">Date</option>
+            </select>
+
+            <label for="sort-direction">Order:</label>
+            <select id="sort-direction">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+
+            <button type="button" id="apply-sort">Apply Sort</button>
+          </div>
+
+          <table id="table">
+            <thead>
+              <tr>
+                <th data-field="id">ID</th>
+                <th data-field="description">Description</th>
+                <th data-field="amount">Amount</th>
+                <th data-field="category">Category</th>
+                <th data-field="date">Date</th>
+                <th data-field="actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+              <!-- Records will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </section>
+
+        <section id="form">
+          <h2>New Transactions</h2>
+
+          <form id="transaction-form" novalidate>
+            <!--novalidate attribute is used to ignore default browser validation messages-->
+
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required />
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required />
+
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+              <option value="">Select Category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required />
+
+            <button type="submit">Add Transaction</button>
+
+            <!---status message container -->
+            <div id="status-message">
+              <p id="status-text" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+
+        <section id="settings">
+          <h2>Settings</h2>
+        </section>
+
+        <section id="about">
+          <h2>About</h2>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Student Finance Tracker.</p>
+    </footer>
+    <script type="module" src="scripts/ui.js"></script>
+  </body>
+</html>
