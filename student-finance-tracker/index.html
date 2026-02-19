@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Finance Tracker</title>
     <link rel="stylesheet" href="styles/main.css">
-    <script type="module" src="scripts/ui.js"></script>
+    
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -18,9 +18,9 @@
                 <ul>
                     <li><a href="#dashboard">Dashboard</a></li>
                     <li><a href="#Records">Records</a></li>
-                    <li><a href="#transactions">New Transactions</a></li>
-                    <li><a href="#analytics">Setting</a></li>
-                    <li><a href="#reports">About</a></li>
+                    <li><a href="#form">New Transactions</a></li>
+                    <li><a href="#settings">Setting</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
             </nav>
         </header>
@@ -29,24 +29,66 @@
             
             <section id="dashboard">
                 <h2>Dashboard</h2>
+                <!-- span separates the data and the labels making in it accessible -->
+                 
                 <div class="stats">
-                    <div class="stat-card">Total Transactions: 0</div>
-                    <div class="stat-card">Total Amount: $0</div>
-                    <div class="stat-card">Top Category: -</div>
-                    <div class="stat-card">Last 7 Days: -</div>
+                    <div class="stat-card">Total Transactions: <span id="total-transactions">0</span></div>
+                    <div class="stat-card">Total Amount: $<span id="total-amount">0</span></div>
+                    <div class="stat-card">Top Category: <span id="top-category">-</span></div>
+                    <div class="stat-card">Last 7 Days: <span id="last-7-days">0</span></div>
                 </div>
+
             </section>
 
             <section id="Records">
                 <h2>Records</h2>
+                <!---table to display financial records--->
+
+                <div class="sorting-controls">
+
+                    <label for="sort-field">Sort By:</label>
+                    <select id="sort-field">
+                        <option value="">Select Field</option>
+                        <option value="description">Description</option>
+                        <option value="amount">Amount</option>
+                        <option value="category">Category</option>
+                        <option value="date">Date</option>
+                    </select>
+
+                    <label for="sort-direction">Order:</label>
+                    <select id="sort-direction">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+
+                    <button type="button" id="apply-sort">Apply Sort</button>
+
+                    </div>
+
+
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th data-field ="id">ID</th>
+                            <th data-field="description">Description</th>
+                            <th data-field="amount">Amount</th>
+                            <th data-field="category">Category</th>
+                            <th data-field="date">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <!-- Records will be dynamically inserted here -->
+                    </tbody>
+                </table>
                 
             </section>
 
             <section id="form">
                 <h2>New Transactions</h2>
 
-                <form id="transaction-form">
-                    <!-- Form fields for new transaction -->
+                <form id="transaction-form" novalidate>
+                    <!--novalidate attribute is used to ignore default browser validation messages-->
+                    
                     <label for="description">Description:</label>
                     <input type="text" id="description" name="description" required>
 
@@ -89,7 +131,7 @@
     <footer>
         <p>&copy; 2024 Student Finance Tracker.</p>
     </footer>
-
+    <script type="module" src="scripts/ui.js"></script>
     
 </body>
 </html>
