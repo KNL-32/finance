@@ -1,5 +1,4 @@
-import { saveTransactions, loadTransactions } from "./storage.js";
-import { validateField, patterns } from "./validators.js";
+import { loadTransactions, saveTransactions } from "./storage.js";
 
 
 // Wait until the page loads
@@ -124,14 +123,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     saveTransactions(transactionArr); // Save to localStorage
 
-    //updates the table with the new transaction 
+    //updates the table with the new transaction
     renderApp();
 
     //Update dashboard stats
     addtodashboard();
 
     // Clear form
-    form.reset(); 
+    form.reset();
     
     // If all validations pass
     showMessage("Transaction added successfully!");
@@ -174,6 +173,8 @@ function showTable(transactions) {
     <td>$${transaction.amount}</td>
     <td>${transaction.category}</td>
     <td>${transaction.date}</td>
+    <button class="edit-btn" data-id="${transaction.id}">✏</button>
+    <button class="delete-btn" data-id="${transaction.id}">🗑</button>
   `;
 
   // Append the new row to the table body
@@ -188,7 +189,7 @@ function addtodashboard() {
   // Counts total transactions
    totalTransactions.textContent = transactionArr.length;
 
-    // Calculate total amount 
+    // Calculate total amount
     //loop to sum up the amounts of all transactions in the transactionArr array.
     let totalAmount = 0;
     for (let i = 0; i < transactionArr.length; i++) {
